@@ -5,7 +5,7 @@ import * as url from 'url';
 import bcrypt from 'bcryptjs';
 import * as jwtJsDecode from 'jwt-js-decode';
 import base64url from "base64url";
-import SimpleWebAuthnServer from '@simplewebauthn/server';
+import '@simplewebauthn/server';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
