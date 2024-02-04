@@ -1,3 +1,11 @@
+minuses
+  vanila js -> use vue.js
+  server: 
+    no async calls
+    no validations
+    no status codes
+
+
 client on react/vue
 
 server on fastify
