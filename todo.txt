@@ -1,0 +1,8 @@
+client on react/vue
+
+server on fastify
+  use db sqlight/mysql
+
+  sanitizing
+    before writing to db
+  input validation: json schema
