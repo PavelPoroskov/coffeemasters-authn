@@ -5,6 +5,10 @@ minuses
     no validations
     no status codes
 
+  no endpoint /logout
+  no endpoint /resetpassword
+
+  no confirming email
 
 client on react/vue
 
@@ -21,3 +25,4 @@ chrome does not suggest generate password
   suggests when browser profile logined to google account
 chromium does not suggest generate password
 firefox suggests generate password
+
