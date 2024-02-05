@@ -21,7 +21,12 @@ const Auth = {
           id: user.email,
           name: user.name,
         })
-        navigator.credentials.store(credentials);
+
+        try {
+          navigator.credentials.store(credentials);
+        } catch (e) {
+          console.log('Password manager is turned off in browser.');
+        }
       }
     },
     register: async (event) => {
@@ -36,8 +41,18 @@ const Auth = {
       console.log('register response', response);
       Auth.postLogin(response, user);
     },
+    autoLogin: async () => {
+      if (window.PasswordCredential) {
+        const credentials = await navigator.credentials.get({ password: true });
+        document.getElementById("login_email").value = credentials.id;
+        document.getElementById("login_password").value = credentials.password;
+        Auth.login();
+      }
+    },
     login: async (event) => {
-      event.preventDefault();
+      if (event) {
+        event.preventDefault();
+      }
 
       const credentials = {
         email: document.getElementById("login_email").value,
@@ -90,6 +105,7 @@ const Auth = {
     },
 }
 Auth.updateStatus();
+Auth.autoLogin();
 
 export default Auth;
 

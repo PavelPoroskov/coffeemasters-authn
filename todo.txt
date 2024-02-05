@@ -16,7 +16,14 @@ minuses
   https://developer.mozilla.org/en-US/docs/Web/API/PasswordCredential
     only for chrome, firefox NO, safari NO
 
+TODO from slides:
+ Last time logged in
+ Last 99 login timestamps
+ Last 99 IP addresses
+ Code for recovering passwords
+ Multi-factor information
 
+My TODO
 client on react/vue
 
 server on fastify
@@ -27,7 +34,7 @@ server on fastify
   input validation: json schema
 
 
-registration
+issue registration
 chrome does not suggest generate password
   suggests when browser profile logined to google account
 chromium does not suggest generate password
