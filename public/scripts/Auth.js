@@ -14,6 +14,15 @@ const Auth = {
         // TODO don't use alert();
         alert(response.message);
       }
+
+      if (window.PasswordCredential && user.password) {
+        const credentials = new window.PasswordCredential({
+          password: user.password,
+          id: user.email,
+          name: user.name,
+        })
+        navigator.credentials.store(credentials);
+      }
     },
     register: async (event) => {
       event.preventDefault();
@@ -25,10 +34,7 @@ const Auth = {
       };
       const response = await API.register(user);
       console.log('register response', response);
-      Auth.postLogin(response, {
-        name: user.name,
-        email: user.email,
-      });
+      Auth.postLogin(response, user);
     },
     login: async (event) => {
       event.preventDefault();
@@ -40,8 +46,8 @@ const Auth = {
       const response = await API.login(credentials);
       console.log('login response', response);
       Auth.postLogin(response, {
+        ...credentials,
         name: response.name,
-        email: credentials.email,
       });
     },
     logout: () => {
@@ -49,6 +55,10 @@ const Auth = {
       Auth.account = null;
       Auth.updateStatus();
       Router.go('/');
+
+      if (window.PasswordCredential) {
+        navigator.credentials.preventSilentAccess();
+      }
     },
     updateStatus() {
         if (Auth.isLoggedIn && Auth.account) {

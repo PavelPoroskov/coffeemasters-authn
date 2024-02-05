@@ -10,6 +10,13 @@ minuses
 
   no confirming email
 
+  use JWT?
+  use token?
+
+  https://developer.mozilla.org/en-US/docs/Web/API/PasswordCredential
+    only for chrome, firefox NO, safari NO
+
+
 client on react/vue
 
 server on fastify
