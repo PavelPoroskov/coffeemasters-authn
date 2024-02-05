@@ -14,3 +14,10 @@ server on fastify
   sanitizing
     before writing to db
   input validation: json schema
+
+
+registration
+chrome does not suggest generate password
+  suggests when browser profile logined to google account
+chromium does not suggest generate password
+firefox suggests generate password

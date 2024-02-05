@@ -36,9 +36,9 @@ app.post('/auth/register',(req,res) => {
   //  is name empty
   //  res.status(400)
   const validatedInput = {
-    name: req.body.register_name,
-    email: req.body.register_email,
-    password: req.body.register_password,
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
   }
   
   const userFound = findUser(validatedInput.email);
@@ -73,8 +73,8 @@ app.post('/auth/register',(req,res) => {
 app.post('/auth/login',(req,res) => {
   // TODO validation
   const validatedInput = {
-    email: req.body.login_email,
-    password: req.body.login_password,
+    email: req.body.email,
+    password: req.body.password,
   }
 
   const userFound = findUser(validatedInput.email);
