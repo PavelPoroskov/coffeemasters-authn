@@ -67,9 +67,17 @@ const Auth = {
         name: response.name,
       });
     },
-    loginFromGoogle: (data) => {
-      console.log('loginFromGoogle()');
+    loginFromGoogle: async(data) => {
+      console.log('Auth.loginFromGoogle(): input');
       console.log(data);
+
+      const response = await API.loginFromGoogle(data);
+      console.log('API.loginFromGoogle(): result');
+      console.log(response);
+      Auth.postLogin(response, {
+        name: response.name,
+        email: response.email,
+      });
     },
     logout: () => {
       Auth.isLoggedIn = false;

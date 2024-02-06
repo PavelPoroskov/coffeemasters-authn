@@ -2,7 +2,8 @@ import express from 'express'
 import { JSONFilePreset } from 'lowdb/node'
 import * as url from 'url';
 import bcrypt from 'bcryptjs';
-// import * as jwtJsDecode from 'jwt-js-decode';
+// weekly downloads 2000
+import * as jwtJsDecode from 'jwt-js-decode';
 // import base64url from "base64url";
 import '@simplewebauthn/server';
 
@@ -66,6 +67,39 @@ app.post('/auth/register',(req,res) => {
     res.status(200);
     res.send({
       ok: true,
+    });
+  }
+});
+
+app.post('/auth/login-google',(req,res) => {
+  // TODO verify jwt using secret https://www.npmjs.com/package/jwt-js-decode
+  const jwt = jwtJsDecode.decode(req.body.credential);
+  const user = {
+    name: jwt.payload.given_name + ' ' + jwt.payload.family_name,
+    email: jwt.payload.email,
+    hashedPassword: false,
+  }
+
+  const userFound = findUser(user.email);
+
+  if (userFound) {
+    userFound.google = jwt.payload.aud;
+    db.write();
+    res.send({
+      ok: true,
+      name: user.name,
+      email: user.email,
+    });
+  } else {
+    db.data.users.push({
+      ...user,
+      google: jwt.payload.aud,
+    });
+    db.write();
+    res.send({
+      ok: true,
+      name: user.name,
+      email: user.email,
     });
   }
 });
