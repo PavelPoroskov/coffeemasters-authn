@@ -44,9 +44,11 @@ const Auth = {
     autoLogin: async () => {
       if (window.PasswordCredential) {
         const credentials = await navigator.credentials.get({ password: true });
-        document.getElementById("login_email").value = credentials.id;
-        document.getElementById("login_password").value = credentials.password;
-        Auth.login();
+        if (credentials) {
+          document.getElementById("login_email").value = credentials.id;
+          document.getElementById("login_password").value = credentials.password;
+          Auth.login();
+        }
       }
     },
     login: async (event) => {
@@ -64,6 +66,10 @@ const Auth = {
         ...credentials,
         name: response.name,
       });
+    },
+    loginFromGoogle: (data) => {
+      console.log('loginFromGoogle()');
+      console.log(data);
     },
     logout: () => {
       Auth.isLoggedIn = false;
