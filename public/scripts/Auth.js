@@ -4,6 +4,11 @@ import Router from "./Router.js";
 const Auth = {
     isLoggedIn: false,
     account: null,
+    loginStep: 1,
+    init: () => {
+      document.getElementById("login_section_password").hidden = true;
+      document.getElementById("login_section_webauthn").hidden = true;
+    },
     postLogin: (response, user) => {
       if (response.ok) {
         Auth.isLoggedIn = true;
@@ -51,21 +56,41 @@ const Auth = {
         }
       }
     },
+    checkAuthOptions: async () => {
+      const response = await API.checkAuthOptions({
+        email: document.getElementById("login_email").value,
+      });
+      Auth.loginStep = 2;
+
+      if (response.password) {
+        document.getElementById("login_section_password").hidden = false;
+      }
+      if (response.google) {
+        document.getElementById("login_section_google").hidden = false;
+      }
+      if (response.webauthn) {
+        document.getElementById("login_section_webauthn").hidden = false;
+      }
+    },
     login: async (event) => {
       if (event) {
         event.preventDefault();
       }
 
-      const credentials = {
-        email: document.getElementById("login_email").value,
-        password: document.getElementById("login_password").value,
-      };
-      const response = await API.login(credentials);
-      console.log('login response', response);
-      Auth.postLogin(response, {
-        ...credentials,
-        name: response.name,
-      });
+      if (Auth.loginStep === 1) {
+        Auth.checkAuthOptions();
+      } else {
+        const credentials = {
+          email: document.getElementById("login_email").value,
+          password: document.getElementById("login_password").value,
+        };
+        const response = await API.login(credentials);
+        console.log('login response', response);
+        Auth.postLogin(response, {
+          ...credentials,
+          name: response.name,
+        });  
+      }
     },
     loginFromGoogle: async(data) => {
       console.log('Auth.loginFromGoogle(): input');
@@ -114,9 +139,6 @@ const Auth = {
 
         }
     },    
-    init: () => {
-        
-    },
 }
 Auth.updateStatus();
 Auth.autoLogin();

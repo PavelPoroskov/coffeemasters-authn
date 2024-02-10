@@ -71,6 +71,22 @@ app.post('/auth/register',(req,res) => {
   }
 });
 
+app.post('/auth/auth-options',(req,res) => {
+  const userFound = findUser(req.body.email);
+
+  if (userFound) {
+    res.send({
+      password: userFound.hashedPassword !== false,
+      google: userFound.google,
+      webauthn: userFound.webauthn,
+    });
+  } else {
+    res.send({
+      password: true,
+    });
+  }
+});
+
 app.post('/auth/login-google',(req,res) => {
   // TODO verify jwt using secret https://www.npmjs.com/package/jwt-js-decode
   const jwt = jwtJsDecode.decode(req.body.credential);

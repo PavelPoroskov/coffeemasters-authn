@@ -82,9 +82,14 @@
                 <fieldset>
                     <label for="login_email">Your Email</label>
                     <input id="login_email" required autocomplete="username">      
-                    
-                    <label for="login_password">Password</label>
-                    <input type="password" id="login_password" autocomplete="current-password">
+
+                    <section hidden id="login_section_password">
+                        <label for="login_password">Password</label>
+                        <input type="password" id="login_password" autocomplete="current-password">
+                    </section>
+                    <section hidden id="login_section_webauthn">
+
+                    </section>
                 </fieldset>
                 <button>Continue</button>
 
@@ -93,25 +98,27 @@
                 </p>                   
                 
                 </fieldset>
-                <fieldset>
-                    <div id="g_id_onload"
-                        data-client_id="562416729734-pqfk5bjom93nnf4ijpd0gt0c2qh6c4oc.apps.googleusercontent.com"
-                        data-context="signin"
-                        data-ux_mode="popup"
-                        data-callback="loginFromGoogle"
-                        data-auto_select="false"
-                        data-itp_support="false">
-                    </div>
-
-                    <div class="g_id_signin"
-                        data-type="standard"
-                        data-shape="rectangular"
-                        data-theme="outline"
-                        data-text="signin_with"
-                        data-size="large"
-                        data-logo_alignment="left">
-                    </div>
-                </fieldset>
+                <section hidden id="login_section_google">
+                    <fieldset>
+                        <div id="g_id_onload"
+                            data-client_id="562416729734-pqfk5bjom93nnf4ijpd0gt0c2qh6c4oc.apps.googleusercontent.com"
+                            data-context="signin"
+                            data-ux_mode="popup"
+                            data-callback="loginFromGoogle"
+                            data-auto_select="false"
+                            data-itp_support="false">
+                        </div>
+    
+                        <div class="g_id_signin"
+                            data-type="standard"
+                            data-shape="rectangular"
+                            data-theme="outline"
+                            data-text="signin_with"
+                            data-size="large"
+                            data-logo_alignment="left">
+                        </div>
+                    </fieldset>    
+                </section>
             </form>            
         </section>
 

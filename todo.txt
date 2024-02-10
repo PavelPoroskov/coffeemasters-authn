@@ -40,3 +40,5 @@ chrome does not suggest generate password
 chromium does not suggest generate password
 firefox suggests generate password
 
+TODO
+  federated login with github
