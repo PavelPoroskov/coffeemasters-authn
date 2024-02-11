@@ -46,11 +46,12 @@ TODO
   MFA login mobile?
   email verification if use password login
   reset password if use password login
-  routes for every login-option in separate file
+  [done] routes for every login-option in separate file
   WebAuthn:
     store current-challenge in db.user or in session 
     update device-authenticator.counter in db
 
 add authenticator
-  mobile QR + Bluetooth: failed. after scanning QR long spinner (browser Chrome, pc Linux Fedora, iPhone 13)
-    maybe 
+  mobile QR + Bluetooth: failed. after scanning QR long spinner Connecting
+  (browser Chrome, pc Linux Fedora, iPhone 13)
+    maybe Linux not support
