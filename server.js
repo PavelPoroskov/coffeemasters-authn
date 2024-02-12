@@ -3,7 +3,7 @@ import * as url from 'url';
 import { getConfig } from './server/getConfig.js'
 import { router } from './server/routes/index.js'
 
-const __dirname = url.fileURLToPath(new URL('..', import.meta.url));
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 const CONFIG = getConfig();
 
 const app = express()

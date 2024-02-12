@@ -55,3 +55,11 @@ add authenticator
   mobile QR + Bluetooth: failed. after scanning QR long spinner Connecting
   (browser Chrome, pc Linux Fedora, iPhone 13)
     maybe Linux not support
+
+testing
+  user1 [password]
+  user2 [GoogleLogin]
+  user3 [WebAuthn]
+  all combinations [password, GoogleLogin, WebAuthn] for user
+
+test om macbook

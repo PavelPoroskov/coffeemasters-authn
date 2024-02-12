@@ -5,9 +5,9 @@ export const routeAuthOptions = (req,res) => {
 
   if (userFound) {
     res.send({
-      password: userFound.hashedPassword !== false,
-      google: userFound.google,
-      webauthn: userFound.webauthn,
+      password: !!userFound.hashedPassword,
+      google: !!userFound.google,
+      webauthn: !!userFound.webauthn,
     });
   } else {
     res.send({
